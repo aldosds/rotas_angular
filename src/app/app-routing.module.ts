@@ -4,8 +4,17 @@ import { TitleComponent } from './pages/index/title/title.component';
 import { CardComponent } from './pages/portfolio/card/card.component';
 
 const routes: Routes = [
+  //Componente principal
   {path: '', component: TitleComponent, pathMatch: 'full'}, //full é pra quando quero a url exata
-  {path: 'portfolio', component: CardComponent, pathMatch: 'prefix'} //prefix é pra quando a url contenha algo no prefix
+  //portfolio
+  //portfolio/1
+  //portfolio/1/abc
+  {path: 'portfolio', component: CardComponent, children: [
+    {path: ':id', component: CardComponent},
+    {path: ':id/:utoken', component: CardComponent},
+  ]},
+  //Rotas coringa é representada com "**"
+  {path:'**', redirectTo: ''}
 ];
 
 @NgModule({
